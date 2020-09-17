@@ -14,7 +14,7 @@ def hello(who: Who):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--host', default='127.0.0.1')
+    parser.add_argument('-l', '--host', default='0.0.0.0')
     parser.add_argument('-p', '--port', default=5000, type=int)
     
     args = parser.parse_args()

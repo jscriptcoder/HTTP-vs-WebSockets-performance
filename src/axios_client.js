@@ -1,15 +1,15 @@
 const { PerformanceObserver, performance } = require('perf_hooks')
 const axios = require('axios')
 
-const host = process.env.HOST || '127.0.0.1'
-const port = process.env.POST || 5000
+const host = process.env.HOST || '0.0.0.0'
+const port = process.env.PORT || 5000
 const server = process.env.SERVER || 'unknown'
 const apiUrl = `http://${host}:${port}/hello`
 
 let iters = 10000
 
 async function runTest() {
-    console.log(`axios client <===> ${server} server`)
+    console.log(`axios client <===> ${server} server on http://${host}:${port}`)
     console.log(`Running test with ${iters} iterations...`)
 
     performance.mark('START')
