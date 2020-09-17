@@ -1,0 +1,24 @@
+{
+  "name": "http-vs-websockets-performance",
+  "version": "1.0.0",
+  "description": "This is an experiment to compare HTTP vs WebSockets performance using `Python server` <==> `Nodejs client`",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jscriptcoder/HTTP-vs-WebSockets-performance.git"
+  },
+  "author": "francisco.ramos@researchlab.ai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jscriptcoder/HTTP-vs-WebSockets-performance/issues"
+  },
+  "homepage": "https://github.com/jscriptcoder/HTTP-vs-WebSockets-performance#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "node-fetch": "^2.6.1",
+    "websocket": "^1.0.32",
+    "ws": "^7.3.1"
+  }
+}
