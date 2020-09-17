@@ -4,7 +4,9 @@
   "description": "This is an experiment to compare HTTP vs WebSockets performance using `Python server` <==> `Nodejs client`",
   "scripts": {
     "fetch-flask": "PORT=5000 SERVER=flask babel-node src/fetch_client.js",
+    "axios-flask": "PORT=5000 SERVER=flask babel-node src/axios_client.js",
     "fetch-fastapi": "PORT=5001 SERVER=fastapi babel-node src/fetch_client.js",
+    "axios-fastapi": "PORT=5001 SERVER=fastapi babel-node src/axios_client.js",
     "fetch-client": "babel-node src/fetch_client.js",
     "flask-server": "python src/flask_server.py --port 5000",
     "fastapi-server": "python src/fastapi_server.py --port 5001"

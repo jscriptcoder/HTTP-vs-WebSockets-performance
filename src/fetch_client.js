@@ -21,7 +21,7 @@ async function runTest() {
 
     await (async function asyncLoop() {
         const response = await fetch(apiUrl, requestInit)
-        const json = await response.json()
+        const data = await response.json()
         if (--iters === 0) return
         await asyncLoop()
     })()
