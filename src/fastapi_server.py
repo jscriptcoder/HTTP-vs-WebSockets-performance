@@ -13,9 +13,9 @@ def hello(who: Who):
     return json.dumps({ 'hello': who.name })
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Start server')
-    parser.add_argument('-l', '--host', help='interface to listen to', default='127.0.0.1')
-    parser.add_argument('-p', '--port', default=5000, type=int, help='port to bind to')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', '--host', default='127.0.0.1')
+    parser.add_argument('-p', '--port', default=5000, type=int)
     
     args = parser.parse_args()
     print('Server starting at: ' + 'http://{}:{}'.format(args.host, args.port))

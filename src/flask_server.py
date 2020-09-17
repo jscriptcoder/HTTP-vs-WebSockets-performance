@@ -14,7 +14,7 @@ def hello():
     return json.dumps({ 'hello': request.get_json().get('name')})
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Start server')
+    parser = argparse.ArgumentParser()
     parser.add_argument('-l', '--host', default='127.0.0.1')
     parser.add_argument('-p', '--port', default=5000, type=int)
 
