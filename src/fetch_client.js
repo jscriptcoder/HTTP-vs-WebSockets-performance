@@ -1,18 +1,20 @@
 const { PerformanceObserver, performance } = require('perf_hooks')
 const fetch = require('node-fetch')
 
-const apiUrl = 'http://127.0.0.1:5000/hello'
+const host = process.env.HOST || '127.0.0.1'
+const port = process.env.POST || 5000
+const server = process.env.SERVER || 'unknown'
+const apiUrl = `http://${host}:${port}/hello`
+
+let iters = 10000
+const requestInit = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: 'Fran' })
+}
 
 async function runTest() {
-    let iters = 10000
-    const requestInit = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: 'Fran' })
-    }
-
-    console.log('fetch client <===> flask server')
-    console.log('==============================')
+    console.log(`fetch client <===> ${server} server`)
     console.log(`Running test with ${iters} iterations...`)
 
     performance.mark('START')
