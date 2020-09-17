@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is an experiment to compare HTTP vs WebSockets performance using `Python server` <==> `Nodejs client`",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-fetch-flask": "babel-node src/fetch_client.js"
   },
   "repository": {
     "type": "git",
@@ -16,9 +16,14 @@
   },
   "homepage": "https://github.com/jscriptcoder/HTTP-vs-WebSockets-performance#readme",
   "dependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.10.4",
     "axios": "^0.20.0",
     "node-fetch": "^2.6.1",
     "websocket": "^1.0.32",
     "ws": "^7.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5"
   }
 }

@@ -1,6 +1,11 @@
+#!/usr/bin/env python
+
 from flask import Flask, request, jsonify
-import argparse
+import logging
 import json
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 app = Flask(__name__)
 
@@ -10,10 +15,5 @@ def hello():
     return json.dumps({ 'hello': request.get_json().get('name')})
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Start server')
-    parser.add_argument('-l', '--listen', help='interface to listen to', default='127.0.0.1')
-    parser.add_argument('-p', '--port', default=5000, type=int, help='port to bind to')
-
-    args = parser.parse_args()
-    print('Server starting at: ' + 'http://{}:{}'.format(args.listen, args.port))
-    app.run(host=args.listen, port=args.port)
+    print('Server starting at: ' + 'http://127.0.0.1:5000')
+    app.run()
