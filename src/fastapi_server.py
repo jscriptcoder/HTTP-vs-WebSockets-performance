@@ -6,11 +6,11 @@ import json
 
 app = FastAPI()
 
-class Who(BaseModel): name: str
+class Data(BaseModel): name: str
 
 @app.post('/hello')
-def hello(who: Who):
-    return json.dumps({ 'hello': who.name })
+def hello(data: Data):
+    return json.dumps({ 'hello': data.name })
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
