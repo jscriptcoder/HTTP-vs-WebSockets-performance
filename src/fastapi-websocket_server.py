@@ -8,8 +8,12 @@ app = FastAPI()
 async def hello(websocket: WebSocket):
     await websocket.accept()
     while True:
-        data = await websocket.receive_json()
-        await websocket.send_json({ 'hello': data['name'] })
+        try:
+            data = await websocket.receive_json()
+            await websocket.send_json({ 'hello': data['name'] })
+        except:
+            await websocket.close()
+            break
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
