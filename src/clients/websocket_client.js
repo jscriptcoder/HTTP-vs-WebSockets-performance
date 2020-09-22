@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000
 const server = process.env.SERVER || 'unknown'
 const wsApi = `ws://${host}:${port}/hello`
 
-let iters = 1
+let iters = 10000
 
 async function runTest() {
     console.log(`websocket client <===> ${server} server on ws://${host}:${port}/hello`)

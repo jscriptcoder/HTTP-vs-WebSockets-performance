@@ -13,8 +13,11 @@
     "fastapi-websocket": "python src/servers/fastapi-websocket_server.py --port 5002",
     "socketio-flask-socketio": "PORT=5003 SERVER=flask-socketio babel-node src/clients/socketio_client.js",
     "flask-socketio": "python src/servers/flask-socketio_server.py --port 5003",
+    "ws-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/ws_client.js",
     "websocket-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/websocket_client.js",
-    "eventlet": "python src/servers/eventlet_server.py --port 5004"
+    "eventlet": "python src/servers/eventlet_server.py --port 5004",
+    "websocket-websockets": "PORT=5005 SERVER=websockets babel-node src/clients/websocket_client.js",
+    "websockets": "python src/servers/websockets_server.py --port 5005"
   },
   "repository": {
     "type": "git",
