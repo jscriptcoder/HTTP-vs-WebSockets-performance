@@ -1,6 +1,5 @@
 import eventlet
-from eventlet import wsgi
-from eventlet import websocket
+from eventlet import wsgi, websocket
 import argparse
 
 @websocket.WebSocketWSGI
