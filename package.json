@@ -16,8 +16,11 @@
     "ws-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/ws_client.js",
     "websocket-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/websocket_client.js",
     "eventlet": "python src/servers/eventlet_server.py --port 5004",
+    "ws-websockets": "PORT=5005 SERVER=websockets babel-node src/clients/ws_client.js",
     "websocket-websockets": "PORT=5005 SERVER=websockets babel-node src/clients/websocket_client.js",
-    "websockets": "python src/servers/websockets_server.py --port 5005"
+    "websockets": "python src/servers/websockets_server.py --port 5005",
+    "socketio-socketio": "PORT=5006 SERVER=socketio babel-node src/clients/socketio_client.js",
+    "socketio": "python src/servers/socketio_server.py --port 5006"
   },
   "repository": {
     "type": "git",
