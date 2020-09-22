@@ -16,7 +16,7 @@ async function runTest() {
 
     await (async function asyncLoop() {
         const response = await axios.post(apiUrl, { name: 'Fran' })
-        const { name } = response.data
+        const { hello } = response.data
         
         if (--iters === 0) return
         await asyncLoop()

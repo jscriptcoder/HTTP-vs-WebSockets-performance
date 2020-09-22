@@ -18,7 +18,7 @@ async def hello(websocket: WebSocket):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', '--host', default='0.0.0.0')
-    parser.add_argument('-p', '--port', default=5002, type=int)
+    parser.add_argument('-p', '--port', default=5000, type=int)
     
     args = parser.parse_args()
     print('Server starting at: ' + 'ws://{}:{}/hello'.format(args.host, args.port))

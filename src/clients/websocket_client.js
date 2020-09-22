@@ -1,27 +1,28 @@
 const { PerformanceObserver, performance } = require('perf_hooks')
-const io = require('socket.io-client')
+const WebSocketClient = require('websocket').client
 
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 5000
 const server = process.env.SERVER || 'unknown'
 const wsApi = `ws://${host}:${port}/hello`
 
-let iters = 10000
+let iters = 1
 
 async function runTest() {
-    console.log(`SocketIO client <===> ${server} server on ws://${host}:${port}/hello`)
+    console.log(`websocket client <===> ${server} server on ws://${host}:${port}/hello`)
     
-    const socket = io(wsApi, { transports: ['websocket'] })
+    const client = new WebSocketClient()
 
-    socket.on('connect', () => {
+    client.on('connect', connection => {
         console.log(`Running test with ${iters} iterations...`)
         
         function requestHello() {
-            socket.send({ name: 'Fran' })
+            connection.sendUTF(JSON.stringify({ name: 'Fran' }))
         }
-
-        socket.on('message', data => {
-            const { name } = data
+    
+        connection.on('message', message => {
+            const data = JSON.parse(message.utf8Data)
+            const { hello } = data
 
             if (--iters > 0) {
                 requestHello()
@@ -29,14 +30,18 @@ async function runTest() {
                 performance.mark('END')
                 performance.measure('START to END', 'START', 'END')
 
-                socket.close()
+                // https://www.iana.org/assignments/websocket/websocket.xhtml#close-code-number
+                connection.close(1000, 'Done testing')
             }
+            
         })
 
         performance.mark('START')
 
         requestHello()
     })
+
+    client.connect(wsApi)
 }
 
 const obs = new PerformanceObserver(items => {
