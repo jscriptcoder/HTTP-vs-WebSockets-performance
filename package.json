@@ -6,17 +6,14 @@
     "fetch-flask": "PORT=5000 SERVER=flask babel-node src/clients/fetch.js",
     "axios-flask": "PORT=5000 SERVER=flask babel-node src/clients/axios.js",
     "flask": "python src/servers/flask.py --port 5000",
-
     "fetch-fastapi": "PORT=5001 SERVER=fastapi babel-node src/clients/fetch.js",
     "axios-fastapi": "PORT=5001 SERVER=fastapi babel-node src/clients/axios.js",
     "fastapi": "python src/servers/fastapi.py --port 5001",
-
     "websocket-fastapi-websocket": "PORT=5002 SERVER=fastapi-websocket babel-node src/clients/websocket.js",
     "fastapi-websocket": "python src/servers/fastapi-websocket.py --port 5002",
-
     "socketio-flask-socketio": "PORT=5003 SERVER=flask-socketio babel-node src/clients/socketio.js",
     "flask-socketio": "python src/servers/flask-socketio.py --port 5003",
-
+    "websocket-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/websocket.js",
     "eventlet": "python src/servers/eventlet.py --port 5004"
   },
   "repository": {

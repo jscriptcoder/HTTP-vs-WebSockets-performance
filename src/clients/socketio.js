@@ -2,7 +2,7 @@ const { PerformanceObserver, performance } = require('perf_hooks')
 const io = require('socket.io-client')
 
 const host = process.env.HOST || '0.0.0.0'
-const port = process.env.PORT || 5003
+const port = process.env.PORT || 5000
 const server = process.env.SERVER || 'unknown'
 const wsApi = `ws://${host}:${port}/hello`
 
@@ -10,12 +10,12 @@ let iters = 10000
 
 async function runTest() {
     console.log(`SocketIO client <===> ${server} server on ws://${host}:${port}/hello`)
-    console.log(`Running test with ${iters} iterations...`)
-
+    
     const socket = io(wsApi, { transports: ['websocket'] })
 
     socket.on('connect', () => {
-
+        console.log(`Running test with ${iters} iterations...`)
+        
         function requestHello() {
             socket.send({ name: 'Fran' })
         }

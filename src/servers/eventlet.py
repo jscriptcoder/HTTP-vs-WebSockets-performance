@@ -1,15 +1,23 @@
 import eventlet
+import json
 from eventlet import wsgi, websocket
 import argparse
 
 @websocket.WebSocketWSGI
 def handle(ws):
-    if ws.path == '/hello':
-        while True:
-            data = ws.wait()
-            if m is None: break
-            # ws.send(m)
-            print(data)
+    while True:
+        message = ws.wait()
+        if message is None: break
+        
+        data = json.loads(message)
+        ws.send(json.dumps({ 'hello': data['name'] }))
+
+def site(env, start_response):
+    if env['PATH_INFO'] == '/hello':
+        return handle(env, start_response)
+    else:
+        start_response('200 OK', [('Content-Type', 'text/plain')])
+        return ['Eventlet running...']
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

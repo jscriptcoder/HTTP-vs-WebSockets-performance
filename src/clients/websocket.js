@@ -2,26 +2,27 @@ const { PerformanceObserver, performance } = require('perf_hooks')
 const WebSocketClient = require('websocket').client
 
 const host = process.env.HOST || '0.0.0.0'
-const port = process.env.PORT || 5002
+const port = process.env.PORT || 5000
 const server = process.env.SERVER || 'unknown'
 const wsApi = `ws://${host}:${port}/hello`
 
-let iters = 10000
+let iters = 1
 
 async function runTest() {
-    console.log(`websocket client <===> ${server} server on http://${host}:${port}/hello`)
-    console.log(`Running test with ${iters} iterations...`)
-
+    console.log(`websocket client <===> ${server} server on ws://${host}:${port}/hello`)
+    
     const client = new WebSocketClient()
 
     client.on('connect', connection => {
-    
+        console.log(`Running test with ${iters} iterations...`)
+        
         function requestHello() {
             connection.sendUTF(JSON.stringify({ name: 'Fran' }))
         }
     
         connection.on('message', message => {
-            const { name } = message.utf8Data.data
+            console.log(message)
+            // const { name } = message.utf8Data.data
 
             if (--iters > 0) {
                 requestHello()
