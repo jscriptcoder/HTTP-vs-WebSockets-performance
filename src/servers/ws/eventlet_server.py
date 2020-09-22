@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import eventlet
 from eventlet import wsgi, websocket
 import argparse

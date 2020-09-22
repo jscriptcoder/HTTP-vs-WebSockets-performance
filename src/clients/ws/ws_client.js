@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { PerformanceObserver, performance } = require('perf_hooks')
 const WebSocket = require('ws')
 
@@ -48,4 +50,6 @@ const obs = new PerformanceObserver(items => {
 
 obs.observe({ entryTypes: ['measure'] })
 
-runTest()
+if (require.main === module) {
+    runTest()
+}

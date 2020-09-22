@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from fastapi import FastAPI, WebSocket
 import argparse
 import uvicorn

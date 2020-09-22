@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn

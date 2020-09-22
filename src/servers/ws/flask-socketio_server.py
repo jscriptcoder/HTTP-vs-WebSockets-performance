@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send
 import argparse
