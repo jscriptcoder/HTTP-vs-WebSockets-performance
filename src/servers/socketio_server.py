@@ -6,13 +6,13 @@ import argparse
 sio = socketio.Server()
 app = socketio.WSGIApp(sio)
 
-class HelloNamespace(socketio.Namespace):
-    def on_message(self, sid, data):
-        self.send({'hello': data['name']})
-
 # @sio.on('message', namespace='/hello')
 # def hello(sid, data):
 #     sio.send({'hello': data['name']}, namespace='/hello')
+
+class HelloNamespace(socketio.Namespace):
+    def on_message(self, sid, data):
+        self.send({'hello': data['name']})
 
 sio.register_namespace(HelloNamespace('/hello'))
 
