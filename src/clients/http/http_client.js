@@ -2,16 +2,6 @@ import http from 'http'
 import { host, port, serverUrl, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
 
-const reqOptions = {
-    hostname: host,
-    port: port,
-    path: '/hello',
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' }
-}
-
-const postData = JSON.stringify({ name: 'Fran' })
-
 // Would be great to have Promise.defer :_(
 class Deferred {
     resolve = null
@@ -24,7 +14,7 @@ class Deferred {
     }
 }
 
-async function request(reqOptions) {
+async function request(reqOptions, postData) {
     const deferred = new Deferred() // Promise.defer() => not supported
 
     const req = http.request(reqOptions, resp => {
@@ -55,6 +45,16 @@ async function request(reqOptions) {
 export async function runTest() {
     console.log(`Http client connecting to http://${host}:${port}`)
 
+    const reqOptions = {
+        hostname: host,
+        port: port,
+        path: '/hello',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    }
+    
+    const postData = JSON.stringify({ name: 'Fran' })
+
     const timer = new PerformanceTimer()
 
     console.log(`Running test with ${iters} iterations...`)
@@ -63,9 +63,8 @@ export async function runTest() {
 
     let i = iters
     await (async function asyncLoop() {
-        const data = await request(serverUrl, reqOptions)
+        const data = await request(reqOptions, postData)
         const { hello } = data
-        console.log(hello)
 
         if (--i === 0) return
         await asyncLoop()

@@ -2,15 +2,15 @@ import fetch from 'node-fetch'
 import { host, port, serverUrl, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
 
-const requestInit = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: 'Fran' })
-}
-
 export async function runTest() {
     console.log(`Fetch client connecting to http://${host}:${port}`)
 
+    const requestInit = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'Fran' })
+    }
+    
     const timer = new PerformanceTimer()
 
     console.log(`Running test with ${iters} iterations...`)
