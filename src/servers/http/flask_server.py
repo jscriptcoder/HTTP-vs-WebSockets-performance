@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 from flask import Flask, request, jsonify
+from src.servers.config import host, port
 import logging
-from servers.config import host, port
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -11,7 +11,9 @@ app = Flask(__name__)
 
 @app.route('/hello', methods=['POST'])
 def hello():
-    return jsonify(hello = request.get_json().get('name'))
+    json = request.get_json()
+    name = json.get('name')
+    return jsonify(hello = name)
 
 def run_test():
     print('Server starting at ' + 'http://{}:{}'.format(host, port))

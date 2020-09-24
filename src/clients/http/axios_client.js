@@ -1,8 +1,6 @@
-#!/usr/bin/env node
-
-const axios = require('axios')
-const { host, port, serverUrl, iters } = require('../config')
-const PerformanceTimer = require('../PerformanceTimer')
+import axios from 'axios'
+import { host, port, serverUrl, iters } from '../config'
+import PerformanceTimer from '../PerformanceTimer'
 
 export async function runTest() {
     console.log(`Axios client connecting to http://${host}:${port}`)
@@ -14,11 +12,12 @@ export async function runTest() {
     timer.start()
 
     // async loop
+    let i = iters
     await (async function asyncLoop() {
         const response = await axios.post(serverUrl, { name: 'Fran' })
         const { hello } = response.data
         
-        if (--iters === 0) return
+        if (--i === 0) return
         await asyncLoop()
     })()
 

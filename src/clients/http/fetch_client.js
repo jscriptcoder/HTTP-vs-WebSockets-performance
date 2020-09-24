@@ -1,8 +1,6 @@
-#!/usr/bin/env node
-
-const fetch = require('node-fetch')
-const { host, port, serverUrl, iters } = require('../config')
-const PerformanceTimer = require('../PerformanceTimer')
+import fetch from 'node-fetch'
+import { host, port, serverUrl, iters } from '../config'
+import PerformanceTimer from '../PerformanceTimer'
 
 const requestInit = {
     method: 'POST',
@@ -20,12 +18,13 @@ export async function runTest() {
     timer.start()
 
     // async loop
+    let i = iters
     await (async function asyncLoop() {
         const response = await fetch(serverUrl, requestInit)
         const data = await response.json()
         const { hello } = data
         
-        if (--iters === 0) return
+        if (--i === 0) return
         await asyncLoop()
     })()
 

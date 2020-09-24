@@ -3,24 +3,8 @@
   "version": "1.0.0",
   "description": "This is an experiment to compare HTTP vs WebSockets performance using `Nodejs client` <==> `Python server`",
   "scripts": {
-    "fetch-flask": "PORT=5000 SERVER=flask babel-node src/clients/fetch_client.js",
-    "axios-flask": "PORT=5000 SERVER=flask babel-node src/clients/axios_client.js",
-    "flask": "python src/servers/flask_server.py --port 5000",
-    "fetch-fastapi": "PORT=5001 SERVER=fastapi babel-node src/clients/fetch_client.js",
-    "axios-fastapi": "PORT=5001 SERVER=fastapi babel-node src/clients/axios_client.js",
-    "fastapi": "python src/servers/fastapi_server.py --port 5001",
-    "websocket-fastapi-websocket": "PORT=5002 SERVER=fastapi-websocket babel-node src/clients/websocket_client.js",
-    "fastapi-websocket": "python src/servers/fastapi-websocket_server.py --port 5002",
-    "socketio-flask-socketio": "PORT=5003 SERVER=flask-socketio babel-node src/clients/socketio_client.js",
-    "flask-socketio": "python src/servers/flask-socketio_server.py --port 5003",
-    "ws-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/ws_client.js",
-    "websocket-eventlet": "PORT=5004 SERVER=eventlet babel-node src/clients/websocket_client.js",
-    "eventlet": "python src/servers/eventlet_server.py --port 5004",
-    "ws-websockets": "PORT=5005 SERVER=websockets babel-node src/clients/ws_client.js",
-    "websocket-websockets": "PORT=5005 SERVER=websockets babel-node src/clients/websocket_client.js",
-    "websockets": "python src/servers/websockets_server.py --port 5005",
-    "socketio-socketio": "PORT=5006 SERVER=socketio babel-node src/clients/socketio_client.js",
-    "socketio": "python src/servers/socketio_server.py --port 5006"
+    "axios-client": "babel-node src/clients/http/axios_client.js",
+    "fetch-client": "babel-node src/clients/http/fetch_client.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +17,7 @@
   },
   "homepage": "https://github.com/jscriptcoder/HTTP-vs-WebSockets-performance#readme",
   "dependencies": {
+    "@stomp/stompjs": "^5.4.4",
     "axios": "^0.20.0",
     "chalk": "^4.1.0",
     "node-fetch": "^2.6.1",
@@ -44,6 +29,9 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
-    "@babel/plugin-transform-async-to-generator": "^7.10.4"
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-async-to-generator": "^7.10.4",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5"
   }
 }
