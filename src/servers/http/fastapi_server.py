@@ -6,14 +6,15 @@ import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from src.servers.config import host, port
+from src.servers.utils import random_greeting
 
 app = FastAPI()
 
 class Data(BaseModel): name: str
 
-@app.post('/hello')
-def hello(data: Data):
-    return json.dumps({ 'hello': data.name })
+@app.post('/greeting')
+def greeting(data: Data):
+    return { 'greeting': random_greeting(data.name) }
 
 def run_test():
     print('Server starting at ' + 'http://{}:{}'.format(host, port))

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { host, port, serverUrl, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
+import { randomName } from '../utils'
 
 export async function runTest() {
     console.log(`Axios client connecting to http://${host}:${port}`)
@@ -14,10 +15,14 @@ export async function runTest() {
     // async loop
     let i = iters
     await (async function asyncLoop() {
-        const response = await axios.post(serverUrl, { name: 'Fran' })
-        const { hello } = response.data
-        
-        if (--i === 0) return
+        const response = await axios.post(serverUrl, { name: randomName() })
+        const { greeting } = response.data
+
+        if (--i === 0) {
+            console.log(`Last greeting: ${greeting}`)
+            return
+        }
+
         await asyncLoop()
     })()
 

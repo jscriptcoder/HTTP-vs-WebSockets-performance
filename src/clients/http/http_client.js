@@ -1,6 +1,7 @@
 import http from 'http'
 import { host, port, serverUrl, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
+import { randomName } from '../utils'
 
 // Would be great to have Promise.defer :_(
 class Deferred {
@@ -48,12 +49,12 @@ export async function runTest() {
     const reqOptions = {
         hostname: host,
         port: port,
-        path: '/hello',
+        path: '/greeting',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
     
-    const postData = JSON.stringify({ name: 'Fran' })
+    const postData = JSON.stringify({ name: randomName() })
 
     const timer = new PerformanceTimer()
 
@@ -64,9 +65,13 @@ export async function runTest() {
     let i = iters
     await (async function asyncLoop() {
         const data = await request(reqOptions, postData)
-        const { hello } = data
+        const { greeting } = data
 
-        if (--i === 0) return
+        if (--i === 0) {
+            console.log(`Last greeting: ${greeting}`)
+            return
+        }
+
         await asyncLoop()
     })()
 

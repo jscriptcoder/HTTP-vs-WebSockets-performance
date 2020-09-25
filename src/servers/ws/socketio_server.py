@@ -8,15 +8,15 @@ import argparse
 sio = socketio.Server()
 app = socketio.WSGIApp(sio)
 
-# @sio.on('message', namespace='/hello')
-# def hello(sid, data):
-#     sio.send({'hello': data['name']}, namespace='/hello')
+# @sio.on('message', namespace='/greeting')
+# def greeting(sid, data):
+#     sio.send({'greeting': data['name']}, namespace='/greeting')
 
-class HelloNamespace(socketio.Namespace):
+class GreetingNamespace(socketio.Namespace):
     def on_message(self, sid, data):
-        self.send({'hello': data['name']})
+        self.send({'greeting': data['name']})
 
-sio.register_namespace(HelloNamespace('/hello'))
+sio.register_namespace(GreetingNamespace('/greeting'))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

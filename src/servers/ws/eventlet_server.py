@@ -6,17 +6,17 @@ import argparse
 import json
 
 @websocket.WebSocketWSGI
-def handle(ws):
+def greeting_handle(ws):
     while True:
         message = ws.wait()
         if message is None: break
         
         data = json.loads(message)
-        ws.send(json.dumps({ 'hello': data['name'] }))
+        ws.send(json.dumps({ 'greeting': data['name'] }))
 
 def site(env, start_response):
-    if env['PATH_INFO'] == '/hello':
-        return handle(env, start_response)
+    if env['PATH_INFO'] == '/greeting':
+        return greeting_handle(env, start_response)
     else:
         start_response('200 OK', [('Content-Type', 'text/plain')])
         return ['Eventlet running...']

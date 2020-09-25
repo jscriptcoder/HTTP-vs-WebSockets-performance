@@ -4,15 +4,16 @@ import json
 from tornado.web import Application, RequestHandler
 from tornado.ioloop import IOLoop
 from src.servers.config import host, port
+from src.servers.utils import random_greeting
 
-class HelloHandler(RequestHandler):
+class GreetingHandler(RequestHandler):
     def post(self):
         data = json.loads(self.request.body)
         self.set_header('Content-Type', 'application/json')
-        self.write(json.dumps({ 'hello': data['name'] }))
+        self.write(json.dumps({ 'greeting': random_greeting(data['name']) }))
 
 def make_app():
-    urls = [('/hello', HelloHandler)]
+    urls = [('/greeting', GreetingHandler)]
     return Application(urls, debug=True)
 
 def run_test():

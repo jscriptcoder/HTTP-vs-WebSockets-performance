@@ -5,18 +5,19 @@ from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.view import view_config
 from src.servers.config import host, port
+from src.servers.utils import random_greeting
 
-def hello(request):
+def greeting(request):
     data = request.json_body
-    return { 'hello': data['name'] }
+    return { 'greeting': random_greeting(data['name']) }
 
 def run_test():
     # print('Server starting at ' + 'http://{}:{}'.format(host, port))
 
     with Configurator() as config:
-        config.add_route('hello', '/hello')
-        config.add_view(hello, 
-                        route_name='hello', 
+        config.add_route('greeting', '/greeting')
+        config.add_view(greeting, 
+                        route_name='greeting', 
                         request_method='POST', 
                         renderer='json')
         

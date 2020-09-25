@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import { host, port, serverUrl, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
+import { randomName } from '../utils'
 
 export async function runTest() {
     console.log(`Fetch client connecting to http://${host}:${port}`)
@@ -8,7 +9,7 @@ export async function runTest() {
     const requestInit = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: 'Fran' })
+        body: JSON.stringify({ name: randomName() })
     }
     
     const timer = new PerformanceTimer()
@@ -22,9 +23,13 @@ export async function runTest() {
     await (async function asyncLoop() {
         const response = await fetch(serverUrl, requestInit)
         const data = await response.json()
-        const { hello } = data
-        
-        if (--i === 0) return
+        const { greeting } = data
+
+        if (--i === 0) {
+            console.log(`Last greeting: ${greeting}`)
+            return
+        }
+
         await asyncLoop()
     })()
 

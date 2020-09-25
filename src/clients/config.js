@@ -6,4 +6,4 @@ export const {
     iters = 10000
 } = argv
 
-export const serverUrl = `http://${host}:${port}/hello`
+export const serverUrl = `http://${host}:${port}/greeting`
