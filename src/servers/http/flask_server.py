@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
+import logging
 from flask import Flask, request, jsonify
 from src.servers.config import host, port
-import logging
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)

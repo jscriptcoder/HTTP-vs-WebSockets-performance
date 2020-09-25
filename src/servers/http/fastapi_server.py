@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-from fastapi import FastAPI
-from pydantic import BaseModel
 import uvicorn
 import argparse
 import json
+from fastapi import FastAPI
+from pydantic import BaseModel
+from src.servers.config import host, port
 
 app = FastAPI()
 
@@ -14,11 +15,9 @@ class Data(BaseModel): name: str
 def hello(data: Data):
     return json.dumps({ 'hello': data.name })
 
+def run_test():
+    print('Server starting at ' + 'http://{}:{}'.format(host, port))
+    uvicorn.run(app, host=host, port=port, log_level='error')
+
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--host', default='0.0.0.0')
-    parser.add_argument('-p', '--port', default=5000, type=int)
-    
-    args = parser.parse_args()
-    print('Server starting at: ' + 'http://{}:{}'.format(args.host, args.port))
-    uvicorn.run(app, host=args.host, port=args.port, log_level='error')
+    run_test()
