@@ -2,7 +2,6 @@
 
 import json
 import eventlet
-import argparse
 from eventlet import wsgi, websocket
 from src.servers.config import host, port
 from src.servers.utils import random_greeting
@@ -14,7 +13,8 @@ def greeting_handle(ws):
         if message is None: break
         
         data = json.loads(message)
-        ws.send(json.dumps({ 'greeting': random_greeting(data['name']) }))
+        greeting = random_greeting(data['name'])
+        ws.send(json.dumps({ 'greeting': greeting }))
 
 def site(env, start_response):
     if env['PATH_INFO'] == '/greeting':

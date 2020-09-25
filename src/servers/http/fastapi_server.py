@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import uvicorn
-import argparse
 import json
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -14,7 +13,8 @@ class Data(BaseModel): name: str
 
 @app.post('/greeting')
 def greeting(data: Data):
-    return { 'greeting': random_greeting(data.name) }
+    greeting = random_greeting(data.name)
+    return { 'greeting': greeting }
 
 def run_test():
     print('Server starting at ' + 'http://{}:{}'.format(host, port))

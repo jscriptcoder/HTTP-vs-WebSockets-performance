@@ -9,8 +9,9 @@ from src.servers.utils import random_greeting
 class GreetingHandler(RequestHandler):
     def post(self):
         data = json.loads(self.request.body)
+        greeting = random_greeting(data['name'])
         self.set_header('Content-Type', 'application/json')
-        self.write(json.dumps({ 'greeting': random_greeting(data['name']) }))
+        self.write(json.dumps({ 'greeting': greeting }))
 
 def make_app():
     urls = [('/greeting', GreetingHandler)]

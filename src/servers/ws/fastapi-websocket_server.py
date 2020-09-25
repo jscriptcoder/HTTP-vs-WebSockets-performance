@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-from fastapi import FastAPI, WebSocket
-import argparse
 import uvicorn
+from fastapi import FastAPI, WebSocket
+from src.servers.config import host, port
+from src.servers.utils import random_greeting
 
 app = FastAPI()
 
@@ -12,16 +13,15 @@ async def greeting(websocket: WebSocket):
     while True:
         try:
             data = await websocket.receive_json()
-            await websocket.send_json({ 'greeting': data['name'] })
+            greeting = random_greeting(data['name'])
+            await websocket.send_json({ 'greeting': greeting })
         except:
             await websocket.close()
             break
 
+def run_test():
+    print('Server starting at: ' + 'ws://{}:{}/greeting'.format(host, port))
+    uvicorn.run(app, host=host, port=port, log_level='error')
+
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--host', default='0.0.0.0')
-    parser.add_argument('-p', '--port', default=5000, type=int)
-    
-    args = parser.parse_args()
-    print('Server starting at: ' + 'ws://{}:{}/greeting'.format(args.host, args.port))
-    uvicorn.run(app, host=args.host, port=args.port, log_level='error')
+    run_test()

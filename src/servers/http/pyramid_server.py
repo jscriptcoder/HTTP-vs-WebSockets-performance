@@ -9,7 +9,8 @@ from src.servers.utils import random_greeting
 
 def greeting(request):
     data = request.json_body
-    return { 'greeting': random_greeting(data['name']) }
+    greeting = random_greeting(data['name'])
+    return { 'greeting': greeting }
 
 def run_test():
     # print('Server starting at ' + 'http://{}:{}'.format(host, port))

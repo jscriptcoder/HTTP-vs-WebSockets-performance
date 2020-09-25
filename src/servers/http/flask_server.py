@@ -14,6 +14,7 @@ app = Flask(__name__)
 def greeting():
     json = request.get_json()
     name = json.get('name')
+    greeting = random_greeting(name)
     return jsonify(greeting = random_greeting(name))
 
 def run_test():
