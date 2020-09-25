@@ -1,55 +1,65 @@
 #!/usr/bin/env node
 
-const { PerformanceObserver, performance } = require('perf_hooks')
-const WebSocket = require('ws')
-import { randomName } from '../utils'
+import WebSocket from 'ws'
+import { host, port, wsApi, iters } from '../config'
+import PerformanceTimer from '../PerformanceTimer'
+import { Deferred, randomName } from '../utils'
 
-const host = process.env.HOST || '0.0.0.0'
-const port = process.env.PORT || 5000
-const server = process.env.SERVER || 'unknown'
-const wsApi = `ws://${host}:${port}/greeting`
-
-let iters = 10000
-
-async function runTest() {
-    console.log(`ws client <===> ${server} server on ws://${host}:${port}/greeting`)
-    
-    const ws = new WebSocket(wsApi)
-
-    function requestGreeting() {
-        ws.send(JSON.stringify({ name: randomName() }))
+function createRequester(ws) {
+    const requester = {
+        incoming: null,
+        greeting(data) {
+            // new incoming message on the way
+            const incoming = requester.incoming = new Deferred()
+            ws.send(JSON.stringify(data))
+            return incoming.promise
+        }
     }
 
-    ws.on('open', () => {
-        console.log(`Running test with ${iters} iterations...`)
-
-        ws.on('message', message => {
-            const data = JSON.parse(message)
-            const { greeting } = data
-    
-            if (--iters > 0) {
-                requestGreeting()
-            } else {
-                performance.mark('END')
-                performance.measure('START to END', 'START', 'END')
-
-                ws.terminate()
-            }
-        })
-
-        performance.mark('START')
-
-        requestGreeting()
-    })
+    return requester
 }
 
-const obs = new PerformanceObserver(items => {
-    console.log('End test')
-    console.log(`Duration: ${items.getEntries()[0].duration}`)
-    performance.clearMarks()
-})
+async function runTest() {
+    console.log(`ws client connecting to ws://${host}:${port}/greeting`)
+    
+    const timer = new PerformanceTimer()
+    const connect = new Deferred()
+    const ws = new WebSocket(wsApi)
 
-obs.observe({ entryTypes: ['measure'] })
+    ws.on('open', () => connect.resolve())
+    ws.on('error', err => connect.reject(err))
+
+    try {
+        await connect.promise
+
+        console.log(`Running test with ${iters} iterations...`)
+
+        const requester = createRequester(ws)
+
+        ws.on('message', message => requester.incoming.resolve(message))
+
+        let i = iters
+        await (async function asyncLoop() {
+            const sendData = { name: randomName() }
+            const message = await requester.greeting(sendData)
+            const data = JSON.parse(message)
+            const { greeting } = data
+
+            if (--i === 0) {
+                console.log(`Last greeting: ${greeting}`)
+                return
+            }
+    
+            await asyncLoop()
+        })()
+
+        timer.end()
+        ws.terminate()
+
+    } catch(err) {
+        console.error('Error connecting')
+    }
+}
 
 if (require.main === module) {
     runTest()

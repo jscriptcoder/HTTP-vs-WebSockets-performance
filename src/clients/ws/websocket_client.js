@@ -59,7 +59,7 @@ async function runTest() {
 
         // https://www.iana.org/assignments/websocket/websocket.xhtml#close-code-number
         connection.close(1000, 'Done testing')
-
+        
     } catch(err) {
         console.error('Error connecting')
     }
