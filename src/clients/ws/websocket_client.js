@@ -3,21 +3,7 @@
 import { client as WebSocketClient} from 'websocket'
 import { host, port, wsApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { Deferred, randomName } from '../utils'
-
-function createRequester(connection) {
-    const requester = {
-        incoming: null,
-        greeting(data) {
-            // new incoming message on the way
-            const incoming = requester.incoming = new Deferred()
-            connection.sendUTF(JSON.stringify(data))
-            return incoming.promise
-        }
-    }
-
-    return requester
-}
+import { Deferred, createRequester, randomName } from '../utils'
 
 async function runTest() {
     console.log(`websocket client connecting to ws://${host}:${port}/greeting`)
@@ -36,13 +22,12 @@ async function runTest() {
 
         console.log(`Running test with ${iters} iterations...`)
 
-        const requester = createRequester(connection)
-
+        const requester = createRequester(data => connection.sendUTF(data))
         connection.on('message', message => requester.incoming.resolve(message))
 
         let i = iters
         await (async function asyncLoop() {
-            const sendData = { name: randomName() }
+            const sendData = JSON.stringify({ name: randomName() })
             const message = await requester.greeting(sendData)
             const data = JSON.parse(message.utf8Data)
             const { greeting } = data

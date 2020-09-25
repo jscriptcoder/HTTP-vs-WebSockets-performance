@@ -3,26 +3,27 @@
 import eventlet
 import socketio
 import json
-import argparse
+from src.servers.config import host, port
+from src.servers.utils import random_greeting
 
 sio = socketio.Server()
 app = socketio.WSGIApp(sio)
 
 # @sio.on('message', namespace='/greeting')
 # def greeting(sid, data):
-#     sio.send({'greeting': data['name']}, namespace='/greeting')
+#     greeting = random_greeting(data['name'])
+#     sio.send({ 'greeting': greeting }, namespace='/greeting')
 
 class GreetingNamespace(socketio.Namespace):
     def on_message(self, sid, data):
-        self.send({'greeting': data['name']})
+        greeting = random_greeting(data['name'])
+        self.send({ 'greeting': greeting })
 
 sio.register_namespace(GreetingNamespace('/greeting'))
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--host', default='0.0.0.0')
-    parser.add_argument('-p', '--port', default=5000, type=int)
+def run_test():
+    # print('Server starting at: ' + 'ws://{}:{}'.format(host, port))
+    eventlet.wsgi.server(eventlet.listen((host, port)), app)
 
-    args = parser.parse_args()
-    print('Server starting at: ' + 'ws://{}:{}'.format(args.host, args.port))
-    eventlet.wsgi.server(eventlet.listen((args.host, args.port)), app)
+if __name__ == '__main__':
+    run_test()

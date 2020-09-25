@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 
-import logging
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send
 from src.servers.config import host, port
 from src.servers.utils import random_greeting
-
-# log = logging.getLogger('werkzeug')
-# log.setLevel(logging.ERROR)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'

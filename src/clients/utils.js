@@ -26,3 +26,17 @@ export class Deferred {
     })
   }
 }
+
+export function createRequester(sender) {
+  const requester = {
+      incoming: null,
+      greeting(data) {
+          // new incoming message on the way
+          const incoming = requester.incoming = new Deferred()
+          sender(data)
+          return incoming.promise
+      }
+  }
+  
+  return requester
+}

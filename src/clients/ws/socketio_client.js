@@ -1,30 +1,16 @@
 #!/usr/bin/env node
 
 import io from 'socket.io-client'
-import { host, port, wsApi, iters } from '../config'
+import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { Deferred, randomName } from '../utils'
-
-function createRequester(socket) {
-    const requester = {
-        incoming: null,
-        greeting(data) {
-            // new incoming message on the way
-            const incoming = requester.incoming = new Deferred()
-            socket.send(data)
-            return incoming.promise
-        }
-    }
-
-    return requester
-}
+import { Deferred, randomName, createRequester } from '../utils'
 
 async function runTest() {
     console.log(`SocketIO client connecting to http://${host}:${port}`)
     
     const timer = new PerformanceTimer()
     const connect = new Deferred()
-    const socket = io(wsApi, { transports: ['websocket'] })
+    const socket = io(httpApi, { transports: ['websocket'] })
     
     socket.on('connect', () => connect.resolve())
     socket.on('connect_error', err => connect.reject(err))
@@ -34,8 +20,7 @@ async function runTest() {
 
         console.log(`Running test with ${iters} iterations...`)
 
-        const requester = createRequester(socket)
-
+        const requester = createRequester(data => socket.send(data))
         socket.on('message', data => requester.incoming.resolve(data))
 
         let i = iters
