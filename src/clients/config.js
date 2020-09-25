@@ -6,4 +6,5 @@ export const {
     iters = 10000
 } = argv
 
-export const serverUrl = `http://${host}:${port}/greeting`
+export const httpApi = `http://${host}:${port}/greeting`
+export const wsApi = `ws://${host}:${port}/greeting`

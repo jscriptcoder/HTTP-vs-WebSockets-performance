@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { host, port, serverUrl, iters } from '../config'
+import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
 import { randomName } from '../utils'
 
@@ -8,8 +8,7 @@ export async function runTest() {
 
     const requestInit = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: randomName() })
+        headers: { 'Content-Type': 'application/json' }
     }
     
     const timer = new PerformanceTimer()
@@ -18,10 +17,10 @@ export async function runTest() {
 
     timer.start()
 
-    // async loop
     let i = iters
     await (async function asyncLoop() {
-        const response = await fetch(serverUrl, requestInit)
+        const body = JSON.stringify({ name: randomName() })
+        const response = await fetch(httpApi, {...requestInit, body})
         const data = await response.json()
         const { greeting } = data
 

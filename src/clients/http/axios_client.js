@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { host, port, serverUrl, iters } from '../config'
+import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
 import { randomName } from '../utils'
 
@@ -12,10 +12,10 @@ export async function runTest() {
 
     timer.start()
 
-    // async loop
     let i = iters
     await (async function asyncLoop() {
-        const response = await axios.post(serverUrl, { name: randomName() })
+        const postData = { name: randomName() }
+        const response = await axios.post(httpApi, postData)
         const { greeting } = response.data
 
         if (--i === 0) {

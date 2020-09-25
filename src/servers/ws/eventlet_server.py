@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-import eventlet
-from eventlet import wsgi, websocket
-import argparse
 import json
+import eventlet
+import argparse
+from eventlet import wsgi, websocket
+from src.servers.config import host, port
+from src.servers.utils import random_greeting
 
 @websocket.WebSocketWSGI
 def greeting_handle(ws):
@@ -12,7 +14,7 @@ def greeting_handle(ws):
         if message is None: break
         
         data = json.loads(message)
-        ws.send(json.dumps({ 'greeting': data['name'] }))
+        ws.send(json.dumps({ 'greeting': random_greeting(data['name']) }))
 
 def site(env, start_response):
     if env['PATH_INFO'] == '/greeting':
@@ -21,12 +23,10 @@ def site(env, start_response):
         start_response('200 OK', [('Content-Type', 'text/plain')])
         return ['Eventlet running...']
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--host', default='0.0.0.0')
-    parser.add_argument('-p', '--port', default=5000, type=int)
-
-    args = parser.parse_args()
-    print('Server starting at: ' + 'ws://{}:{}'.format(args.host, args.port))
-    listener = eventlet.listen((args.host, args.port))
+def run_test():
+    # print('Server starting at: ' + 'ws://{}:{}'.format(host, port))
+    listener = eventlet.listen((host, port))
     wsgi.server(listener, site)
+
+if __name__ == '__main__':
+    run_test()

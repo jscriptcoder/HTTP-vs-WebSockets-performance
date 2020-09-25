@@ -1,5 +1,5 @@
 import http from 'http'
-import { host, port, serverUrl, iters } from '../config'
+import { host, port, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
 import { Deferred, randomName } from '../utils'
 
@@ -41,8 +41,6 @@ export async function runTest() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    
-    const postData = JSON.stringify({ name: randomName() })
 
     const timer = new PerformanceTimer()
 
@@ -52,6 +50,7 @@ export async function runTest() {
 
     let i = iters
     await (async function asyncLoop() {
+        const postData = JSON.stringify({ name: randomName() })
         const data = await request(reqOptions, postData)
         const { greeting } = data
 

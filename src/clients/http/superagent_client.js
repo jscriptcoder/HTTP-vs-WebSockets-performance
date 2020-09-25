@@ -1,5 +1,5 @@
 import superagent from 'superagent'
-import { host, port, serverUrl, iters } from '../config'
+import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
 import { randomName } from '../utils'
 
@@ -12,12 +12,12 @@ export async function runTest() {
 
     timer.start()
 
-    // async loop
     let i = iters
     await (async function asyncLoop() {
+        const postData = { name: randomName() }
         const response = await superagent
-            .post(serverUrl)
-            .send({ name: randomName() })
+            .post(httpApi)
+            .send(postData)
         const { greeting } = response.body
 
         if (--i === 0) {
