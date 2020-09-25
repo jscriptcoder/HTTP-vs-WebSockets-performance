@@ -1,19 +1,7 @@
 import http from 'http'
 import { host, port, serverUrl, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { randomName } from '../utils'
-
-// Would be great to have Promise.defer :_(
-class Deferred {
-    resolve = null
-    reject = null
-    constructor() {
-        this.promise = new Promise((resolve, reject) => {
-            this.resolve = resolve
-            this.reject = reject
-        })
-    }
-}
+import { Deferred, randomName } from '../utils'
 
 async function request(reqOptions, postData) {
     const deferred = new Deferred() // Promise.defer() => not supported

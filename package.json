@@ -5,7 +5,8 @@
   "scripts": {
     "http-client": "babel-node src/clients/http/http_client.js",
     "axios-client": "babel-node src/clients/http/axios_client.js",
-    "fetch-client": "babel-node src/clients/http/fetch_client.js"
+    "fetch-client": "babel-node src/clients/http/fetch_client.js",
+    "superagent-client": "babel-node src/clients/http/superagent_client.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "chalk": "^4.1.0",
     "node-fetch": "^2.6.1",
     "socket.io-client": "^2.3.0",
+    "superagent": "^6.1.0",
     "text-encoding": "^0.7.0",
     "unique-names-generator": "^4.3.1",
     "websocket": "^1.0.32",

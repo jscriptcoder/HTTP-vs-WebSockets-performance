@@ -1,8 +1,8 @@
-import { 
-    uniqueNamesGenerator, 
-    adjectives, 
-    colors, 
-    animals
+import {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals
 } from 'unique-names-generator'
 
 const rndNamesConfig = {
@@ -12,5 +12,17 @@ const rndNamesConfig = {
 }
 
 export function randomName() {
-    return uniqueNamesGenerator(rndNamesConfig)
+  return uniqueNamesGenerator(rndNamesConfig)
+}
+
+// Would be great to have Promise.defer :_(
+export class Deferred {
+  resolve = null
+  reject = null
+  constructor() {
+    this.promise = new Promise((resolve, reject) => {
+      this.resolve = resolve
+      this.reject = reject
+    })
+  }
 }
