@@ -6,7 +6,7 @@ import PerformanceTimer from '../PerformanceTimer'
 import { Deferred, createRequester, randomName } from '../utils'
 
 async function runTest() {
-    console.log(`websocket client connecting to ws://${host}:${port}/greeting`)
+    console.log(`websocket client connecting to ws://${host}:${port}`)
     
     const timer = new PerformanceTimer()
     const connect = new Deferred()

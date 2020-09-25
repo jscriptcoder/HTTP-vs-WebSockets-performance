@@ -9,7 +9,8 @@
     "superagent-client": "babel-node src/clients/http/superagent_client.js",
     "socketio-client": "babel-node src/clients/ws/socketio_client.js",
     "websocket-client": "babel-node src/clients/ws/websocket_client.js",
-    "ws-client": "babel-node src/clients/ws/ws_client.js"
+    "ws-client": "babel-node src/clients/ws/ws_client.js",
+    "stomp-client": "babel-node src/clients/ws/stomp_client.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,8 @@
   },
   "homepage": "https://github.com/jscriptcoder/HTTP-vs-WebSockets-performance#readme",
   "dependencies": {
-    "@stomp/stompjs": "^5.4.4",
     "axios": "^0.20.0",
-    "chalk": "^4.1.0", 
+    "chalk": "^4.1.0",
     "node-fetch": "^2.6.1",
     "socket.io-client": "^2.3.0",
     "superagent": "^6.1.0",
