@@ -46,7 +46,7 @@ async function runTest() {
         connection.close(1000, 'Done testing')
         
     } catch(err) {
-        console.error('Error connecting')
+        console.error('Error connecting:', err)
     }
 }
 

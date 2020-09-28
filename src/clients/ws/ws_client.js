@@ -42,7 +42,7 @@ async function runTest() {
         ws.terminate()
 
     } catch(err) {
-        console.error('Error connecting')
+        console.error('Error connecting:', err)
     }
 }
 

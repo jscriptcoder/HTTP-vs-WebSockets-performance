@@ -41,7 +41,7 @@ async function runTest() {
         socket.close()
 
     } catch(err) {
-        console.error('Error connecting')
+        console.error('Error connecting:', err)
     }
 }
 

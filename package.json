@@ -7,7 +7,7 @@
     "axios-client": "babel-node src/clients/http/axios_client.js",
     "fetch-client": "babel-node src/clients/http/fetch_client.js",
     "superagent-client": "babel-node src/clients/http/superagent_client.js",
-    "socketio-client": "babel-node src/clients/ws/socketio_client.js",
+    "socketio-client": "babel-node src/clients/socketio/socketio_client.js",
     "websocket-client": "babel-node src/clients/ws/websocket_client.js",
     "ws-client": "babel-node src/clients/ws/ws_client.js",
     "stomp-client": "babel-node src/clients/ws/stomp_client.js"
