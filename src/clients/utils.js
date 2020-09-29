@@ -59,3 +59,8 @@ export function logIterations(iters) {
 export function logError(err) {
   log(chalk.red(`${err}`))
 }
+
+export function range(start=0, end) {
+  const [s, e] = typeof end === 'undefined' ? [0, start] : [start, end]
+  return [...Array(e-s).keys()].map(i => s + i)
+}

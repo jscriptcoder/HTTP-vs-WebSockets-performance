@@ -10,7 +10,17 @@
     "superagent-client": "babel-node src/clients/http/superagent_client.js",
     "socketio-client": "babel-node src/clients/socketio/socketio_client.js",
     "websocket-client": "babel-node src/clients/ws/websocket_client.js",
-    "ws-client": "babel-node src/clients/ws/ws_client.js"
+    "ws-client": "babel-node src/clients/ws/ws_client.js",
+    "run-axios-clients": "yarn axios-client --port 5000 && yarn axios-client --port 5001 && yarn axios-client --port 5002 && yarn axios-client --port 5003",
+    "run-fetch-clients": "yarn fetch-client --port 5000 && yarn fetch-client --port 5001 && yarn fetch-client --port 5002 && yarn fetch-client --port 5003",
+    "run-http-clients": "yarn http-client --port 5000 && yarn http-client --port 5001 && yarn http-client --port 5002 && yarn http-client --port 5003",
+    "run-superagent-clients": "yarn superagent-client --port 5000 && yarn superagent-client --port 5001 && yarn superagent-client --port 5002 && yarn superagent-client --port 5003",
+    "run-all-http-clients": "yarn run-axios-clients && yarn run-fetch-clients && yarn run-superagent-clients && yarn run-http-clients",
+    "run-socketio-client": "yarn socketio-client --port 5004 && yarn socketio-client --port 5005",
+    "run-websocket-clients": "yarn websocket-client --port 5006 && yarn websocket-client --port 5007 && yarn websocket-client --port 5008 && yarn websocket-client --port 5009",
+    "run-ws-clients": "yarn ws-client --port 5006 && yarn ws-client --port 5007 && yarn ws-client --port 5008 && yarn ws-client --port 5009",
+    "run-all-websocket-clients": "yarn run-websocket-clients && yarn run-ws-clients",
+    "run-all": "yarn run-all-http-clients && yarn run-socketio-client && yarn run-all-websocket-clients"
   },
   "repository": {
     "type": "git",

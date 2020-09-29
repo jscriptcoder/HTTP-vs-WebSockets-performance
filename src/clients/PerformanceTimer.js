@@ -1,24 +1,30 @@
 import chalk from 'chalk'
 import { PerformanceObserver, performance } from 'perf_hooks'
+import EventEmitter from 'events'
 import { log, round } from './utils'
 
 function ms2sec(ms, fraction) {
     return `${round(ms/1000, fraction)}s`
 }
 
-function performanceObserverCallback(items) {
-    log('Timer stopped. Measuring...')
-    log(`Duration: ${chalk.magenta(ms2sec(items.getEntries()[0].duration))}`)
-    performance.clearMarks()
-}
-
-export default class PerformanceTimer {
+export default class PerformanceTimer extends EventEmitter {
     startMark = 'START'
     endMark = 'END'
 
     constructor() {
-        this.obs = new PerformanceObserver(performanceObserverCallback)
+        super()
+        this.obs = new PerformanceObserver(this.observerCallback)
         this.obs.observe({ entryTypes: ['measure'] })
+    }
+
+    observerCallback = items => {
+        const { duration } = items.getEntries()[0]
+        this.emit('duration', duration)
+
+        log('Timer stopped. Measuring...')
+        log(`Duration: ${chalk.magenta(ms2sec(duration))}`)
+        
+        performance.clearMarks()
     }
 
     start() {
