@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import {
   uniqueNamesGenerator,
   adjectives,
@@ -39,4 +40,18 @@ export function createRequester(sender) {
   }
   
   return requester
+}
+
+export function round(number, fraction=2) {
+  return number.toFixed(fraction)
+}
+
+export const log = console.log
+
+export function logConnecting(client, url) {
+  log(`${chalk.green(client)} client connecting to ${chalk.yellow(url)}`)
+}
+
+export function logIterations(iters) {
+  log(`Running test with ${chalk.cyan(`${iters} iterations`)}`)
 }

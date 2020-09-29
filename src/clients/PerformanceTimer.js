@@ -1,8 +1,14 @@
-const { PerformanceObserver, performance } = require('perf_hooks')
+import chalk from 'chalk'
+import { PerformanceObserver, performance } from 'perf_hooks'
+import { log, round } from './utils'
+
+function ms2sec(ms, fraction) {
+    return `${round(ms/1000, fraction)}s`
+}
 
 function performanceObserverCallback(items) {
-    console.log('Timer stopped. Measuring...')
-    console.log(`Duration: ${items.getEntries()[0].duration}`)
+    log('Timer stopped. Measuring...')
+    log(`Duration: ${chalk.magenta(ms2sec(items.getEntries()[0].duration))}`)
     performance.clearMarks()
 }
 

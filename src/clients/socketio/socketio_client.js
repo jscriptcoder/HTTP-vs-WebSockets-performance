@@ -3,10 +3,10 @@
 import io from 'socket.io-client'
 import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { Deferred, randomName, createRequester } from '../utils'
+import { Deferred, randomName, createRequester, logConnecting, logIterations } from '../utils'
 
 async function runTest() {
-    console.log(`SocketIO client connecting to http://${host}:${port}`)
+    logConnecting('SocketIO', `http://${host}:${port}`)
     
     const timer = new PerformanceTimer()
     const connect = new Deferred()
@@ -18,7 +18,7 @@ async function runTest() {
     try {
         await connect.promise
 
-        console.log(`Running test with ${iters} iterations...`)
+        logIterations(iters)
 
         const requester = createRequester(data => socket.send(data))
         socket.on('message', data => requester.incoming.resolve(data))
