@@ -1,0 +1,171 @@
+Axios client connecting to http://0.0.0.0:5000
+Running test with 10,000 iterations
+Timer started...
+Last greeting: What’s up, Sore Yellow Sawfish!
+Timer stopped. Measuring...
+Duration: 9.68s
+
+Axios client connecting to http://0.0.0.0:5001
+Running test with 10,000 iterations
+Timer started...
+Last greeting: How’s everything, Statistical Silver Guineafowl!
+Timer stopped. Measuring...
+Duration: 8.82s
+
+Axios client connecting to http://0.0.0.0:5002
+Running test with 10,000 iterations
+Timer started...
+Last greeting: How have you been, Worried Brown Snail!
+Timer stopped. Measuring...
+Duration: 7.73s
+
+Axios client connecting to http://0.0.0.0:5003
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Nice to see you, Generous Crimson Crayfish!
+Timer stopped. Measuring...
+Duration: 10.17s
+
+Fetch client connecting to http://0.0.0.0:5000
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Hi, Quiet Sapphire Marmot!
+Timer stopped. Measuring...
+Duration: 14.53s
+
+Fetch client connecting to http://0.0.0.0:5001
+Running test with 10,000 iterations
+Timer started...
+Last greeting: How’s life, Massive Lavender Goose!
+Timer stopped. Measuring...
+Duration: 11.32s
+
+Fetch client connecting to http://0.0.0.0:5002
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Lovely to see you, Tame Blue Lion!
+Timer stopped. Measuring...
+Duration: 7.72s
+
+Fetch client connecting to http://0.0.0.0:5003
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Lovely to see you, Growing Black Cockroach!
+Timer stopped. Measuring...
+Duration: 10.90s
+
+SuperAgent client connecting to http://0.0.0.0:5000
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Sup, Following Orange Porcupine!
+Timer stopped. Measuring...
+Duration: 13.07s
+
+SuperAgent client connecting to http://0.0.0.0:5001
+Running test with 10,000 iterations
+Timer started...
+Last greeting: How are you doing, Smooth Copper Pheasant!
+Timer stopped. Measuring...
+Duration: 11.02s
+
+SuperAgent client connecting to http://0.0.0.0:5002
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Hello, Toxic Harlequin Wallaby!
+Timer stopped. Measuring...
+Duration: 6.94s
+
+SuperAgent client connecting to http://0.0.0.0:5003
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Good afternoon, Glad Jade Shrimp!
+Timer stopped. Measuring...
+Duration: 13.43s
+
+Http client connecting to http://0.0.0.0:5000
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Pleased to meet you, Alternative Gray Egret!
+Timer stopped. Measuring...
+Duration: 12.26s
+
+Http client connecting to http://0.0.0.0:5001
+Running test with 10,000 iterations
+Timer started...
+Last greeting: What’s new, Glorious Beige Rook!
+Timer stopped. Measuring...
+Duration: 8.78s
+
+Http client connecting to http://0.0.0.0:5002
+Running test with 10,000 iterations
+Timer started...
+Last greeting: Hi, Super Turquoise Chameleon!
+Timer stopped. Measuring...
+Duration: 10.36s
+
+Http client connecting to http://0.0.0.0:5003
+Running test with 10,000 iterations
+Timer started...
+Last greeting: How’s it going, Influential Purple Cardinal!
+Timer stopped. Measuring...
+Duration: 9.64s
+
+SocketIO client connecting to http://0.0.0.0:5004
+Running test with 10,000 iterations
+Last greeting: Goodmorrow, Middle Crimson Egret!
+Timer stopped. Measuring...
+Duration: 17.03s
+
+SocketIO client connecting to http://0.0.0.0:5005
+Running test with 10,000 iterations
+Last greeting: What’s the craic, Broken Fuchsia Gamefowl!
+Timer stopped. Measuring...
+Duration: 14.21s
+
+Websocket client connecting to ws://0.0.0.0:5006
+Running test with 10,000 iterations
+Last greeting: Lovely to see you, Productive Copper Beaver!
+Timer stopped. Measuring...
+Duration: 1.71s
+
+Websocket client connecting to ws://0.0.0.0:5007
+Running test with 10,000 iterations
+Last greeting: How’s it going, Used Scarlet Beaver!
+Timer stopped. Measuring...
+Duration: 2.06s
+
+Websocket client connecting to ws://0.0.0.0:5008
+Running test with 10,000 iterations
+Last greeting: How are you doing, Tan Crimson Mink!
+Timer stopped. Measuring...
+Duration: 2.29s
+
+Websocket client connecting to ws://0.0.0.0:5009
+Running test with 10,000 iterations
+Last greeting: Lovely to meet you, Good Pink Crab!
+Timer stopped. Measuring...
+Duration: 1.92s
+
+WS client connecting to ws://0.0.0.0:5006
+Running test with 10,000 iterations
+Last greeting: What’s new, Super Black Beetle!
+Timer stopped. Measuring...
+Duration: 2.39s
+
+WS client connecting to ws://0.0.0.0:5007
+Running test with 10,000 iterations
+Last greeting: How’s life, Precious Copper Shrimp!
+Timer stopped. Measuring...
+Duration: 2.09s
+
+WS client connecting to ws://0.0.0.0:5008
+Running test with 10,000 iterations
+Last greeting: Whazzup, Conservation Olive Antlion!
+Timer stopped. Measuring...
+Duration: 2.16s
+
+WS client connecting to ws://0.0.0.0:5009
+Running test with 10,000 iterations
+Last greeting: Hey, Future Amaranth Ferret!
+Timer stopped. Measuring...
+Duration: 2.68s
