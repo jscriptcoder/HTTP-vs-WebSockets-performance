@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { randomName, logConnecting, logIterations } from '../utils'
+import { randomName, log, logError, logConnecting, logIterations } from '../utils'
 
 const requestInit = {
     method: 'POST',
@@ -24,14 +24,14 @@ export async function runTest() {
             const { greeting } = data
     
             if (--i === 0) {
-                console.log(`Last greeting: ${greeting}`)
+                log(`Last greeting: ${greeting}`)
                 return
             }
     
             await asyncLoop()
         })()
     } catch (err) {
-        log(`Error: ${err}`)
+        logError(err)
     }
 
     timer.end()

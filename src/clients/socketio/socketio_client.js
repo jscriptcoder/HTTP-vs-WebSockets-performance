@@ -3,7 +3,15 @@
 import io from 'socket.io-client'
 import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { Deferred, randomName, createRequester, logConnecting, logIterations } from '../utils'
+import { 
+    Deferred, 
+    randomName, 
+    createRequester, 
+    log, 
+    logError,
+    logConnecting, 
+    logIterations 
+} from '../utils'
 
 async function runTest() {
     logConnecting('SocketIO', `http://${host}:${port}`)
@@ -30,7 +38,7 @@ async function runTest() {
             const { greeting } = data
 
             if (--i === 0) {
-                console.log(`Last greeting: ${greeting}`)
+                log(`Last greeting: ${greeting}`)
                 return
             }
     
@@ -41,7 +49,7 @@ async function runTest() {
         socket.close()
 
     } catch(err) {
-        console.error('Error connecting:', err)
+        logError(err)
     }
 }
 

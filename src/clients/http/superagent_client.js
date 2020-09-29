@@ -1,7 +1,7 @@
 import superagent from 'superagent'
 import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { randomName, logConnecting, logIterations } from '../utils'
+import { randomName, log, logError, logConnecting, logIterations } from '../utils'
 
 export async function runTest() {
     logConnecting('SuperAgent', `http://${host}:${port}`)
@@ -20,14 +20,14 @@ export async function runTest() {
             const { greeting } = response.body
     
             if (--i === 0) {
-                console.log(`Last greeting: ${greeting}`)
+                log(`Last greeting: ${greeting}`)
                 return
             }
     
             await asyncLoop()
         })()
     } catch (err) {
-        log(`Error: ${err}`)
+        logError(err)
     }
 
     timer.end()

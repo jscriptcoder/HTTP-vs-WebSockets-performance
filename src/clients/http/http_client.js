@@ -1,7 +1,7 @@
 import http from 'http'
 import { host, port, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { Deferred, randomName, logConnecting, logIterations } from '../utils'
+import { Deferred, randomName, log, logError, logConnecting, logIterations } from '../utils'
 
 async function request(reqOptions, postData) {
     const deferred = new Deferred() // Promise.defer() => not supported
@@ -20,10 +20,7 @@ async function request(reqOptions, postData) {
 
     })
     
-    req.on('error', err => {
-        console.log(err)
-        deferred.reject(err)
-    })
+    req.on('error', err => deferred.reject(err))
 
     req.write(postData)
     req.end()
@@ -54,14 +51,14 @@ export async function runTest() {
             const { greeting } = data
     
             if (--i === 0) {
-                console.log(`Last greeting: ${greeting}`)
+                log(`Last greeting: ${greeting}`)
                 return
             }
     
             await asyncLoop()
         })()
     } catch (err) {
-        log(`Error: ${err}`)
+        logError(err)
     }
 
     timer.end()

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { host, port, httpApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { randomName, log, logConnecting, logIterations } from '../utils'
+import { randomName, log, logError, logConnecting, logIterations } from '../utils'
 
 export async function runTest() {
     logConnecting('Axios', `http://${host}:${port}`)
@@ -18,14 +18,14 @@ export async function runTest() {
             const { greeting } = response.data
     
             if (--i === 0) {
-                console.log(`Last greeting: ${greeting}`)
+                log(`Last greeting: ${greeting}`)
                 return
             }
     
             await asyncLoop()
         })()
     } catch (err) {
-        log(`Error: ${err}`)
+        logError(err)
     }
 
     timer.end()

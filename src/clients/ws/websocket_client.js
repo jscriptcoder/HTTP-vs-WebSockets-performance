@@ -3,10 +3,18 @@
 import { client as WebSocketClient} from 'websocket'
 import { host, port, wsApi, iters } from '../config'
 import PerformanceTimer from '../PerformanceTimer'
-import { Deferred, createRequester, randomName } from '../utils'
+import { 
+    Deferred, 
+    randomName, 
+    createRequester, 
+    log, 
+    logError, 
+    logConnecting, 
+    logIterations 
+} from '../utils'
 
 async function runTest() {
-    console.log(`websocket client connecting to ws://${host}:${port}`)
+    logConnecting('Websocket', `ws://${host}:${port}`)
     
     const timer = new PerformanceTimer()
     const connect = new Deferred()
@@ -20,7 +28,7 @@ async function runTest() {
     try {
         const connection = await connect.promise
 
-        console.log(`Running test with ${iters} iterations...`)
+        logIterations(iters)
 
         const requester = createRequester(data => connection.sendUTF(data))
         connection.on('message', message => requester.incoming.resolve(message))
@@ -33,7 +41,7 @@ async function runTest() {
             const { greeting } = data
 
             if (--i === 0) {
-                console.log(`Last greeting: ${greeting}`)
+                log(`Last greeting: ${greeting}`)
                 return
             }
     
@@ -46,7 +54,7 @@ async function runTest() {
         connection.close(1000, 'Done testing')
         
     } catch(err) {
-        console.error('Error connecting:', err)
+        logError(err)
     }
 }
 

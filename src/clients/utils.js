@@ -53,5 +53,9 @@ export function logConnecting(client, url) {
 }
 
 export function logIterations(iters) {
-  log(`Running test with ${chalk.cyan(`${iters} iterations`)}`)
+  log(`Running test with ${chalk.cyan(iters.toLocaleString())} iterations`)
+}
+
+export function logError(err) {
+  log(chalk.red(`${err}`))
 }

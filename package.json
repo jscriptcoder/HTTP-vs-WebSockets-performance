@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is an experiment to compare HTTP vs WebSockets performance using `Nodejs client` <==> `Python server`",
   "scripts": {
+    "postinstall": "pip install -r requirements.txt",
     "http-client": "babel-node src/clients/http/http_client.js",
     "axios-client": "babel-node src/clients/http/axios_client.js",
     "fetch-client": "babel-node src/clients/http/fetch_client.js",

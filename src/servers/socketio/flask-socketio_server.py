@@ -15,7 +15,7 @@ def greeting(data):
     send({ 'greeting': greeting })
 
 def run_test():
-    print('Server starting at: ' + 'ws://{}:{}'.format(host, port))
+    print('Server starting at: ' + 'http://{}:{}'.format(host, port))
     socketio.run(app, host=host, port=port)
 
 if __name__ == '__main__':
