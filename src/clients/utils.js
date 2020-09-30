@@ -48,12 +48,36 @@ export function round(number, fraction=2) {
 
 export const log = console.log
 
-export function logConnecting(client, url) {
-  log(`${chalk.green(client)} client connecting to ${chalk.yellow(url)}`)
+const port2serverMap = {
+  5000: 'FastAPI',
+  5001: 'Flask',
+  5002: 'Pyramid',
+  5003: 'Tornado',
+  5004: 'Flask-Socket.IO',
+  5005: 'Python-Socket.IO',
+  5006: 'Eventlet',
+  5007: 'FastAPI WebSocket',
+  5008: 'Tornado WebSocket',
+  5009: 'WebSockets'
+}
+
+export function logConnecting(client, url, serverByPort=true) {
+  let message = ''
+  const clientConnectingTo = `${chalk.green(client)} client connecting to`
+  if (serverByPort) {
+    const port = url.match(/:(\d+)/)[1]
+    const server = port2serverMap[port]
+    const serverOn = `${chalk.cyan(server)} on`
+    message = `${clientConnectingTo} ${serverOn} ${chalk.yellow(url)}`
+  } else {
+    message = `${clientConnectingTo} ${chalk.yellow(url)}`
+  }
+
+  log(message)
 }
 
 export function logIterations(iters) {
-  log(`Running test with ${chalk.cyan(iters.toLocaleString())} iterations`)
+  log(`Running test with ${chalk.red(iters.toLocaleString())} iterations`)
 }
 
 export function logError(err) {
