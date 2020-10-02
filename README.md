@@ -21,3 +21,9 @@ I wrote an article about it in [Medium](https://medium.com/@jscriptcoder/http-vs
 ### WebSocket Clients:
 1. [Websocket-Node](https://github.com/theturtle32/WebSocket-Node): “pure JavaScript implementation of the WebSocket protocol versions 8 and 13 for Node”. I’m using here the client version.
 2. [WS](https://github.com/websockets/ws): “simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.”
+
+### WebSocket Servers:
+1. [Eventlet](https://eventlet.net/): “concurrent networking library for Python that allows you to change how you run your code, not how you write it…”
+2. [FastAPI WebSockets](https://fastapi.tiangolo.com/advanced/websockets/): Http server FastAPI providing with WebSocket protocol.
+3. [Tornado WebSockets](https://www.tornadoweb.org/en/stable/websocket.html): Http server Tornado providing with WebSocket protocol.
+4. [WebSockets](https://websockets.readthedocs.io/en/stable/intro.html) python package: “a library for building WebSocket servers and clients in Python with a focus on correctness and simplicity.”
