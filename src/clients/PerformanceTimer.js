@@ -28,7 +28,7 @@ export default class PerformanceTimer extends EventEmitter {
     }
 
     start() {
-        console.log('Timer started...')
+        log('Timer started...')
         performance.mark(this.startMark)
     }
 
