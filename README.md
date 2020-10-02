@@ -27,3 +27,10 @@ I wrote an article about it in [Medium](https://medium.com/@jscriptcoder/http-vs
 2. [FastAPI WebSockets](https://fastapi.tiangolo.com/advanced/websockets/): Http server FastAPI providing with WebSocket protocol.
 3. [Tornado WebSockets](https://www.tornadoweb.org/en/stable/websocket.html): Http server Tornado providing with WebSocket protocol.
 4. [WebSockets](https://websockets.readthedocs.io/en/stable/intro.html) python package: “a library for building WebSocket servers and clients in Python with a focus on correctness and simplicity.”
+
+### Socket.IO Client:
+1. [Socket.IO-client](https://github.com/socketio/socket.io-client): official Javascript implementation.
+
+### Socket.IO Servers:
+1. [Flask-Socket.IO](https://flask-socketio.readthedocs.io/en/latest/): “gives Flask applications access to low latency bi-directional communications between the clients and the server…”
+2. [Python-Socket.IO](https://python-socketio.readthedocs.io/en/latest/): “enables real-time bidirectional event-based communication between clients (typically, though not always, web browsers) and a server.”
